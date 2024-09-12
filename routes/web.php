@@ -2,10 +2,16 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
+// /test にgetメソッドで要求が来たらTestControllerクラスのtestメソッドで処理する
+Route::get('/test',[TestController::class, 'test'] )
+// ルート名の設定
+->name('test');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
