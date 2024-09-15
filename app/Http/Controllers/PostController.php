@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class PostController extends Controller
 {
@@ -15,11 +16,11 @@ class PostController extends Controller
 
     public function store(Request $request){
 
-        $post = Post::create([
-            'title' => $request -> title,
-            'body' => $request -> body,
-        ]);
-        
-        return back() -> with('message', '保存しました');
+        $validated = $request->validate([
+            'title' => 'required|max:20',
+            'body' => 'required|max:400',
+            ]);
+        $post = Post::create($validated);
+        return back()->with('message', '保存しました');
     }
 }
