@@ -19,6 +19,9 @@ class PostController extends Controller
             'title' => 'required|max:20',
             'body' => 'required|max:400',
             ]);
+        
+        $validated['user_id'] = $request->user()->id;
+
         $post = Post::create($validated);
         return back()->with('message', '保存しました');
     }
