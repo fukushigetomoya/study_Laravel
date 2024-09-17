@@ -57,4 +57,9 @@ class PostController extends Controller
         return redirect()->route('post.show', $post)->with('message', '更新しました');
     }
 
+    public function destroy(Request $request, Post $post){
+        $post->delete();
+        return redirect()->route("post.index")->with('message','削除しました');
+    }
+
 }
