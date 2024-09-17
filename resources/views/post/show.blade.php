@@ -5,11 +5,23 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto px-6">
+        @if(session('message'))
+        <div class="text-red-600 font-bold">
+            {{ session('message') }}
+        </div>
+    @endif
         <div class="bg-white w-full rounded-2xl">
             <div class="mt-4 p-4">
                 <h1 class="text-lg font-semibold">
                     {{ $post->title }}
                 </h1>
+                <div class="text-right">
+                    <a href="{{ route('post.edit', $post) }}">
+                        <x-primary-button>
+                            編集
+                        </x-primary-button>
+                    </a>
+                </div>
                 <hr class="w-full">
                 <p class="mt-4 whitespace-pre-line" >
                     {{$post->body}}
