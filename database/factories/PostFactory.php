@@ -19,7 +19,7 @@ class PostFactory extends Factory
         return [
             'title' => fake()->realtext(20),
             'body' => fake()->realtext(50),
-            'user_id' => \App\Models\User::factory(),            
+            'user_id' => 1,            
         ];
     }
 }
