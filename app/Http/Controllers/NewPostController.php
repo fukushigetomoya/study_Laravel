@@ -33,7 +33,7 @@ class NewPostController extends Controller
     }
 
     public function mypost(){
-        $posts = Post::with('user')->where('user_id', request()->user()->id)->orderBy('created_at', 'desc')->get();
+        $posts = Post::with('user')->where('user_id', request()->user()->id)->orderBy('created_at', 'desc')->paginate(10);
         return view('post.index', compact('posts'));
     }
 
@@ -60,7 +60,7 @@ class NewPostController extends Controller
 
     public function destroy(Request $request, Post $post){
         $post->delete();
-        return redirect()->route("post.index")->with('message','削除しました');
+        return redirect()->route("post.mypost")->with('message','削除しました');
     }
 
 }
