@@ -34,7 +34,7 @@ class NewPostController extends Controller
 
     public function mypost(){
         $posts = Post::with('user')->where('user_id', request()->user()->id)->orderBy('created_at', 'desc')->paginate(10);
-        return view('post.index', compact('posts'));
+        return view('post.mypost', compact('posts'));
     }
 
     public function show(Post $post){
