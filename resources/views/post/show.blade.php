@@ -5,11 +5,12 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto px-6">
-        @if(session('message'))
+        {{-- @if(session('message'))
         <div class="text-red-600 font-bold">
             {{ session('message') }}
         </div>
-    @endif
+        @endif --}}
+        <x-message :message="session('message')" />
         <div class="bg-white w-full rounded-2xl">
             <div class="mt-4 p-4">
                 <h1 class="text-lg font-semibold">
@@ -24,9 +25,9 @@
                     <form method="post" action="{{ route('post.destroy', $post) }}" class="flex-2" >
                         @csrf
                         @method('delete')
-                        <x-primary-button class="bg-red-700 ml-2">
+                        <x-danger-button>
                             削除
-                        </x-primary-button>
+                        </x-danger-button>
                     </a>
                 </div>
                 <hr class="w-full">
